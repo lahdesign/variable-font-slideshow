@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="">
+<title>Variable Font Project</title>
+
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter">01 / 10</div>
+
+<nav class="nav">
+  <button onclick="go(-1)">← prev</button>
+  <button onclick="go(1)">next →</button>
+</nav>
+
+<div class="deck">
+
+  <!-- SLIDE 1: HERO -->
+  <div class="slide active" id="s1">
+    <div class="hero-bg">
+      <div class="grid-bg"></div>
+      <div class="hero-word">CSS</div>
+    </div>
+    <div class="hero-line"></div>
+    <p class="hero-eyebrow">Web Typography — FOU 120</p>
+    <h1 class="hero-title">Making It<br><span>Your Own</span></h1>
+    <p class="hero-sub">Translating your Figma mockup into living code</p>
+  </div>
+
+  <!-- SLIDE 2: WHERE TO START -->
+  <div class="slide" id="s2">
+    <div class="big-number">02</div>
+    <p class="slide-label">Getting oriented</p>
+    <h2 class="slide-title">Your Figma<br>is the spec.</h2>
+    <p class="slide-body">
+      Your high-fidelity mockup is the source of truth. Every color, spacing value, font size, and weight you set in Figma translates directly into a CSS property. The code is already written in the decisions you made — you're just transcribing them.
+    </p>
+    <div class="tag-row">
+      <div class="tag">colors</div>
+      <div class="tag">typefaces</div>
+      <div class="tag">sizes</div>
+      <div class="tag">spacing</div>
+      <div class="tag">layout</div>
+      <div class="tag">motion</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: COLORS -->
+  <div class="slide" id="s3">
+    <p class="slide-label">Step 01</p>
+    <h2 class="slide-title">Colors &<br>Variables</h2>
+    <p class="slide-body">
+      Your fonts and colors are already loaded. Find your hex values in Figma's inspect panel and plug them into the <span style="font-family:var(--mono); color:var(--accent2);">background-color</span> and <span style="font-family:var(--mono); color:var(--accent2);">color</span> properties. Look for these lines in <strong>main.css</strong> and <strong>navigation.css</strong> — the comments tell you exactly where.
+    </p>
+    <div class="code-block">
+      <span class="com">/* where to change the color of the nav bar */</span><br>
+      <span class="sel">header</span> {<br>
+      &nbsp;&nbsp;<span class="prop">background</span>: <span class="val">rgb(12, 64, 64)</span>; <span class="com">← swap this</span><br>
+      }<br><br>
+      <span class="com">/* where to change the background color of the pop-up nav */</span><br>
+      <span class="sel">nav</span> {<br>
+      &nbsp;&nbsp;<span class="prop">background</span>: <span class="val">rgb(161, 64, 64)</span>; <span class="com">← and this</span><br>
+      }
+    </div>
+    <div class="color-demo">
+      <div class="swatch" style="background:#0c4040">nav</div>
+      <div class="swatch" style="background:#a14040">pop-up</div>
+      <div class="swatch" style="background:lightcoral; color:rgba(0,0,0,0.5);">#history</div>
+      <div class="swatch" style="background:rgb(138,21,21)">footer</div>
+      <div class="swatch" style="background:pink; color:rgba(0,0,0,0.5);">body</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: TYPOGRAPHY -->
+  <div class="slide" id="s4">
+    <div class="font-specimen">Sour Gummy</div>
+    <p class="slide-label">Step 02</p>
+    <h2 class="slide-title">Type<br>Styling</h2>
+    <p class="slide-body">
+      Headings, body text, and navigation links each have their own CSS selectors. In Figma, inspect your type layers to find size, weight, color, and letter-spacing. Match those values to the corresponding selectors in <strong>main.css</strong>.
+    </p>
+    <div class="code-block">
+      <span class="sel">h2</span> {<br>
+      &nbsp;&nbsp;<span class="prop">color</span>: <span class="val">firebrick</span>; <span class="com">← your heading color</span><br>
+      &nbsp;&nbsp;<span class="prop">font-variation-settings</span>: <span class="val">"opsz" 16, "wght" 900, "slnt" -8</span>;<br>
+      }<br><br>
+      <span class="sel">nav a</span> {<br>
+      &nbsp;&nbsp;<span class="prop">color</span>: <span class="val">rgb(163, 144, 144)</span>; <span class="com">← nav link color</span><br>
+      &nbsp;&nbsp;<span class="prop">font-size</span>: <span class="val">1.2rem</span>;<br>
+      }
+    </div>
+  </div>
+
+  <!-- SLIDE 5: GRID LAYOUT -->
+  <div class="slide" id="s5">
+    <p class="slide-label">Step 03</p>
+    <h2 class="slide-title">Grid<br>Layout</h2>
+    <div class="two-col">
+      <div>
+        <p class="slide-body">
+          The desktop layout is controlled by <span style="font-family:var(--mono); color:var(--accent3);">grid-template-areas</span> inside the <span style="font-family:var(--mono); color:var(--accent2);">@media</span> query. Each named area maps to a section ID. Change the column ratios and area arrangement to match your mockup.
+        </p>
+        <div class="code-block" style="margin-top:1rem;">
+          <span class="sel">.page-wrapper</span> {<br>
+          &nbsp;&nbsp;<span class="prop">grid-template-columns</span>: <span class="val">1fr 1fr</span>;<br>
+          &nbsp;&nbsp;<span class="prop">grid-template-areas</span>:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="val">"h v"</span><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="val">"h a"</span>;<br>
+          }
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-start; gap:0.5rem;">
+        <div class="grid-demo">
+          <div class="ga-h">history</div>
+          <div class="ga-v">variations</div>
+          <div class="ga-a">alphabet</div>
+        </div>
+        <p style="font-family:var(--mono); font-size:0.6rem; color:var(--dim); margin-top:0.5rem;">live preview of your current grid</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: BREAKPOINTS -->
+  <div class="slide" id="s6">
+    <p class="slide-label">Step 04</p>
+    <h2 class="slide-title">Mobile<br>First</h2>
+    <p class="slide-body">
+      The layout shifts at <span style="font-family:var(--mono); color:var(--accent3);">800px</span>. Styles outside the media query apply to mobile; styles inside apply to desktop. If your mockup uses a different breakpoint, change <span style="font-family:var(--mono); color:var(--accent2);">min-width: 800px</span> in both <strong>main.css</strong> and <strong>navigation.css</strong>.
+    </p>
+    <div class="code-block">
+      <span class="com">/* mobile — no grid */</span><br>
+      <span class="sel">.page-wrapper</span> { <span class="prop">width</span>: <span class="val">min(100% - 3rem, 95ch)</span>; }<br><br>
+      <span class="com">/* desktop — grid kicks in */</span><br>
+      <span class="sel">@media only screen and (min-width: 800px)</span> {<br>
+      &nbsp;&nbsp;<span class="sel">.page-wrapper</span> { <span class="prop">display</span>: <span class="val">grid</span>; }<br>
+      }
+    </div>
+    <div class="device-row">
+      <div class="device">
+        <div class="device-frame d-mobile"></div>
+        <span>&lt; 800px</span>
+        <span style="color:var(--accent2);">stacked</span>
+      </div>
+      <div class="device">
+        <div class="device-frame d-tablet"></div>
+        <span>≈ 800px</span>
+        <span style="color:var(--accent3);">breakpoint</span>
+      </div>
+      <div class="device">
+        <div class="device-frame d-desktop"></div>
+        <span>&gt; 800px</span>
+        <span style="color:var(--accent);">grid</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: VARIABLE FONTS -->
+  <div class="slide" id="s7">
+    <p class="slide-label">Step 05</p>
+    <h2 class="slide-title">Variable<br>Font Axes</h2>
+    <p class="slide-body">
+      Sour Gummy's axes are set via <span style="font-family:var(--mono); color:var(--accent2);">font-variation-settings</span>. The <strong>wonk</strong> and <strong>width</strong> animation classes each animate between values. Adjust the start and end numbers in the <span style="font-family:var(--mono); color:var(--accent3);">@keyframes</span> to match the expressiveness in your mockup.
+    </p>
+    <div class="vf-demo">SOUR</div>
+    <div class="code-block">
+      <span class="sel">@keyframes weightChange</span> {<br>
+      &nbsp;&nbsp;<span class="prop">0%, 100%</span> { <span class="prop">font-variation-settings</span>: <span class="val">"wght" 200, "slnt" 0</span>; }<br>
+      &nbsp;&nbsp;<span class="prop">50%</span> { <span class="prop">font-variation-settings</span>: <span class="val">"wght" 900, "slnt" -13</span>; }<br>
+      }
+    </div>
+  </div>
+
+  <!-- SLIDE 8: ANIMATIONS -->
+  <div class="slide" id="s8">
+    <p class="slide-label">Step 06</p>
+    <h2 class="slide-title">Timing &<br>Motion</h2>
+    <p class="slide-body">
+      Every animation has three knobs: <span style="font-family:var(--mono); color:var(--accent2);">duration</span> (how long), <span style="font-family:var(--mono); color:var(--accent3);">easing</span> (how it moves), and <span style="font-family:var(--mono); color:var(--accent);">delay</span> (when it starts). Tune these to match the energy of your design — a bold, chunky display might use slower, weightier timing than a clean minimal layout.
+    </p>
+    <div class="anim-row">
+      <div class="anim-box ab1">opacity<br>fade</div>
+      <div class="anim-box ab2">translate<br>Y</div>
+      <div class="anim-box ab3">rotate<br>spin</div>
+      <div class="anim-box ab4">scale<br>pulse</div>
+    </div>
+    <div class="code-block">
+      <span class="sel">h3</span> {<br>
+      &nbsp;&nbsp;<span class="prop">animation</span>: <span class="val">weightChange 7s infinite</span>; <span class="com">← change duration</span><br>
+      }<br><br>
+      <span class="sel">.wonk</span> {<br>
+      &nbsp;&nbsp;<span class="prop">animation</span>: <span class="val">wonkVariations 5s infinite</span>; <span class="com">← and here</span><br>
+      }
+    </div>
+  </div>
+
+  <!-- SLIDE 9: CHECKLIST -->
+  <div class="slide" id="s9">
+    <p class="slide-label">Before you submit</p>
+    <h2 class="slide-title">Final<br>Checklist</h2>
+    <ul class="checklist">
+      <li><span class="check-icon">✓</span> Background and section colors match your Figma</li>
+      <li><span class="check-icon">✓</span> Nav bar and pop-up nav colors updated</li>
+      <li><span class="check-icon">✓</span> All heading and body type colors match mockup</li>
+      <li><span class="check-icon">✓</span> Grid layout reflects your two-column arrangement</li>
+      <li><span class="check-icon">✓</span> Variable font animation timings feel intentional</li>
+      <li><span class="check-icon">✓</span> Page looks correct on both mobile and desktop widths</li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 10: CLOSING -->
+  <div class="slide" id="s10">
+    <div class="closing-ring"></div>
+    <div class="closing-ring"></div>
+    <div class="closing-ring"></div>
+    <h2 class="closing-title">
+      The code<br>
+      <span>is yours.</span>
+    </h2>
+    <p class="closing-sub">Open your editor. Trust your mockup. Make it move.</p>
+  </div>
+
+</div>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  // Slideshow
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  function go(dir) {
+    slides[current].classList.remove('active');
+    current = (current + dir + total) % total;
+    slides[current].classList.add('active');
+    document.getElementById('counter').textContent =
+      String(current + 1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+    document.getElementById('progress').style.width =
+      ((current + 1) / total * 100) + '%';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+  });
+
+  // Init progress
+  document.getElementById('progress').style.width = (1/total*100) + '%';
+</script>
+</body>
+</html>
